@@ -1,16 +1,16 @@
 import nodemailer, { Transporter, SendMailOptions } from "nodemailer";
 
-// Define the function with type annotations
+
 export const Sendmail = async function(
   email: string,
   subject: string,
   message: string
 ): Promise<{ success: boolean; message?: string; error?: string }> {
 
-  // Create a transporter object using the default SMTP transport
+  
   const transporter: Transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    secure: true, // Use `true` for port 465, `false` for all other ports
+    secure: true,
     port: 465,
     auth: {
       user: process.env.SMTP_EMAIL,
@@ -18,10 +18,10 @@ export const Sendmail = async function(
     },
   });
 
-  // Define the email receiver options
+  
   const receiver: SendMailOptions = {
-    from: process.env.SMTP_EMAIL, // sender address
-    to: email, // list of receivers
+    from: process.env.SMTP_EMAIL, 
+    to: email,
     subject: subject, // Subject line 
     html: message // html body
   };
